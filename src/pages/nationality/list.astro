@@ -12,7 +12,7 @@ const response = await getNationalities({ fields: ["id", "name", "flag"] });
 	  {
         response.contents.map((content: Nationality) => (
           <li>
-			<a href={content.id}>
+			<a href={`${content.id}/`}>
 			<img src={content.flag.url} alt={content.name} width="100" />
             <p>{content.name}</p>
 			</a>

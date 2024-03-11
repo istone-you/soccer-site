@@ -12,7 +12,7 @@ const response = await getTeams({ fields: ["id", "name", "emblem"] });
 	  {
         response.contents.map((content: Team) => (
           <li>
-			<a href={content.id}>
+			<a href={`${content.id}/`}>
 			<img src={content.emblem.url} alt={content.name} width="100" />
             <p>{content.name}</p>
 			</a>
