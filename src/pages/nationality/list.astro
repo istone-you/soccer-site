@@ -1,0 +1,39 @@
+---
+// 必要なモジュールのインポート
+import Layout from '../../layouts/Layout.astro';
+import { getNationalities } from "../../libs/entities/nationalities";
+import type { Nationality } from "../../libs/types";
+const response = await getNationalities({ fields: ["id", "name", "flag"] });
+---
+
+<Layout title="My first blog with Astro">
+  <main>
+    <ul>
+	  {
+        response.contents.map((content: Nationality) => (
+          <li>
+			<a href={content.id}>
+			<img src={content.flag.url} alt={content.name} width="100" />
+            <p>{content.name}</p>
+			</a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+	li {
+		text-align: center;
+	}
+</style>

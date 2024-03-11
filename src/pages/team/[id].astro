@@ -1,0 +1,44 @@
+---
+// 必要なモジュールのインポート
+import Layout from '../../layouts/Layout.astro';
+import { getTeams, getTeamDetail } from "../../libs/entities/teams";
+import { getPlayers } from "../../libs/entities/players";
+
+import type { Team, Player } from "../../libs/types";
+
+export async function getStaticPaths() {
+  const response = await getTeams({ fields: ["id"] });
+  return response.contents.map((content: any) => ({
+    params: {
+      id: content.id,
+    },
+  }));
+}
+
+
+// Astro.paramsから各ルーティングのidを取得
+const { id } = Astro.params;
+const team: Team = await getTeamDetail(id as string);
+const players = await getPlayers({ filters: `team[equals]${id}` });
+
+console.log(players.contents)
+---
+
+<Layout title={`${team.name}`}>
+  <main>
+    <div>
+        <img src={team.emblem.url} alt={team.name} width="100" />
+        <p>{team.name}</p>
+        <p>{team.league[0]}</p>
+        <ul>
+        {players.contents.map((player: Player) => (
+          <li>
+            {player.image && <img src={player.image.url} alt={player.name} width="100" />}
+            <a href={`/player/${player.id}`}>{player.name}</a>
+            <p>{player.position.join(', ')}</p>
+          </li>
+        ))}
+        </ul>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,31 @@
+---
+// 必要なモジュールのインポート
+import Layout from '../layouts/Layout.astro';
+import { getTeams } from "../libs/entities/teams";
+const response = await getTeams({ fields: ["id", "name", "emblem"] });
+---
+
+<Layout title="My first blog with Astro">
+  <main>
+	<ul>
+		<li>
+			<a href="/team/list">チーム一覧</a>
+		</li>
+		<li>
+			<a href="/nationality/list">国一覧</a>
+		</li>
+	</ul>
+  </main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+</style>
