@@ -27,6 +27,8 @@ const player: Player = await getPlayerDetail(id as string);
         {player.image && <img src={player.image.url} alt={player.name} width="100" />}
         <p>{player.name}</p>
         <p>{player.position.join(', ')}</p>
+        <a href={`/team/${player.team.id}`}>{player.team.name}</a>
+        <a href={`/nationality/${player.nationality.id}`}>{player.nationality.name}</a>
         </ul>
     </div>
   </main>

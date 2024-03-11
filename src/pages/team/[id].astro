@@ -20,8 +20,6 @@ export async function getStaticPaths() {
 const { id } = Astro.params;
 const team: Team = await getTeamDetail(id as string);
 const players = await getPlayers({ filters: `team[equals]${id}` });
-
-console.log(players.contents)
 ---
 
 <Layout title={`${team.name}`}>
