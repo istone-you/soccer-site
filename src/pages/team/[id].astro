@@ -24,9 +24,10 @@ const players = await getPlayers({ filters: `team[equals]${id}` });
 
 <Layout title={`${team.name}`}>
   <main>
-    <div>
+    <div class="center">
+        <a href="/team/list">チーム一覧へ</a>
+        <h1>{team.name}</h1>
         <img src={team.emblem.url} alt={team.name} width="100" />
-        <p>{team.name}</p>
         <p>{team.league[0]}</p>
         <ul>
         {players.contents.map((player: Player) => (
@@ -40,3 +41,9 @@ const players = await getPlayers({ filters: `team[equals]${id}` });
     </div>
   </main>
 </Layout>
+
+<style>
+	.center {
+		text-align: center;
+	}
+</style>

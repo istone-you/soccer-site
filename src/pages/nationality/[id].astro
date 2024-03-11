@@ -26,18 +26,25 @@ console.log(players.contents)
 
 <Layout title={`${nationality.name}`}>
   <main>
-    <div>
-        <img src={nationality.flag.url} alt={nationality.name} width="100" />
-        <p>{nationality.name}</p>
-        <ul>
-        {players.contents.map((player: Player) => (
-          <li>
-            {player.image && <img src={player.image.url} alt={player.name} width="100" />}
-            <a href={`/player/${player.id}`}>{player.name}</a>
-            <p>{player.position.join(', ')}</p>
-          </li>
-        ))}
-        </ul>
+    <div class="center">
+      <a href="/nationality/list">国一覧へ</a>
+      <h1>{nationality.name}</h1>
+      <img src={nationality.flag.url} alt={nationality.name} width="100" />
+      <ul>
+      {players.contents.map((player: Player) => (
+        <li>
+          {player.image && <img src={player.image.url} alt={player.name} width="100" />}
+          <a href={`/player/${player.id}`}>{player.name}</a>
+          <p>{player.position.join(', ')}</p>
+        </li>
+      ))}
+      </ul>
     </div>
   </main>
 </Layout>
+
+<style>
+	.center {
+		text-align: center;
+	}
+</style>

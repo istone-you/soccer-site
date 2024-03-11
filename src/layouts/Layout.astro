@@ -1,4 +1,7 @@
 ---
+import HomeButton from '../components/HomeButton.astro';
+
+
 interface Props {
 	title: string;
 }
@@ -17,6 +20,7 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
+		<HomeButton />
 		<slot />
 	</body>
 </html>
